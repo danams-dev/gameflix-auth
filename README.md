@@ -86,10 +86,10 @@ email, role, password hash, subscription status, and account creation date.
 
 ## AI Usage and Change Log
 ### 1. AI Usage
-I used ChatGPT to help clarify and explain certain Spring Boot and Spring Security concepts, troubleshoot errors, and 
-assist with parts of the registration, login, password hashing, JWT authentication, and endpoint implementation.
+I used ChatGPT primarily to clarify Spring Boot and Spring Security concepts, troubleshoot errors, review parts of my
+implementation, and better understand registration, login, password hashing, JWT authentication, and protected endpoints.
 
-**Prompts Used:**
+**Prompts Given:**
 - explain what specific Spring Security code was doing line by line
 - help me check whether my JWT generation and validation were correct
 - how to store secrets outside of committed source code
