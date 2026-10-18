@@ -137,7 +137,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "{{auth_secret_0r1a}}",
+              "value": "{{valid_jwt}}",
               "type": "string"
             }
           ]
@@ -168,7 +168,7 @@
           "bearer": [
             {
               "key": "token",
-              "value": "{{auth_secret_01a}}",
+              "value": "{{invalid_jwt}}",
               "type": "string"
             }
           ]
@@ -192,14 +192,38 @@
       "response": []
     }
   ],
-  "variable": [
+  "event": [
     {
-      "key": "auth_secret_0zhx",
-      "secret": true
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
     },
     {
-      "key": "auth_secret_0r1a",
-      "secret": true
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "valid_jwt",
+      "value": ""
+    },
+    {
+      "key": "invalid_jwt",
+      "value": ""
     }
   ]
 }

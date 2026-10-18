@@ -15,14 +15,16 @@ for the GameFlix application.
 3. Configure a MySQL user with permission to access the `gameflix_auth` database. My local setup uses the database 
    user `gameflix_app`, but other credentials can be used.
 4. In `src/main/resources`, create an `application-local.properties` file.
-5. Add the database connection information and JWT settings to `application-local.properties`.
-6. Use `application.properties.example` as a reference for the required configuration keys.
+5. Add the database connection information and JWT settings to application-local.properties. The JWT secret should
+   match the Base64 format expected by the application's security configuration.
+6. Use application.properties.example as a reference for the required configuration keys.
 7. Run the Spring Boot application from IntelliJ.
 8. The API runs locally at `http://localhost:8080` when `GameflixAuthApplication` is running.
 
 ## Database Schema
 The `users` table was created from the `User` entity using Spring Data JPA and Hibernate.
 
+```sql
 CREATE TABLE `users` (
 `user_id` bigint NOT NULL AUTO_INCREMENT,
 `created_at` datetime(6) NOT NULL,
@@ -34,6 +36,7 @@ CREATE TABLE `users` (
 PRIMARY KEY (`user_id`),
 UNIQUE KEY `uk_users_email` (`email`)
 );
+```
 
 ## Password Hashing
 - Passwords are hashed using bcrypt through Spring Security's `DelegatingPasswordEncoder`.
@@ -111,7 +114,7 @@ which caused a `401 Unauthorized` response during testing. I updated the `Securi
 and `/api/auth/login` were public while other routes remained protected.
 
 During the final testing stage, I realized that invalid registration input was returning `401 Unauthorized` instead of
-the required `401 Bad Request`. I updated the security configuration to allow Spring's /error route so validation errors
+the required `400 Bad Request`. I updated the security configuration to allow Spring's /error route so validation errors
 could return the correct 400 response.
 
 ChatGPT did not always provide the complete final implementation on the first attempt, so I had to verify its
