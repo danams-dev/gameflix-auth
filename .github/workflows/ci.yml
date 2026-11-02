@@ -18,7 +18,6 @@ jobs:
           MYSQL_DATABASE: gameflix_auth
           MYSQL_USER: gameflix_app
           MYSQL_PASSWORD: testpass
-          JWT_SECRET: "GameflixTestSecret1234567890123456"
         ports:
           - 3306:3306
         options: >-
@@ -43,6 +42,6 @@ jobs:
           SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/gameflix_auth
           SPRING_DATASOURCE_USERNAME: gameflix_app
           SPRING_DATASOURCE_PASSWORD: testpass
-
+          JWT_SECRET: "GameflixTestSecret1234567890123456"
       - name: Build Docker image
         run: docker build -t gameflix-backend .
