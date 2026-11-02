@@ -18,6 +18,7 @@ jobs:
           MYSQL_DATABASE: gameflix_auth
           MYSQL_USER: gameflix_app
           MYSQL_PASSWORD: testpass
+          JWT_SECRET: "GameflixTestSecret1234567890123456"
         ports:
           - 3306:3306
         options: >-
