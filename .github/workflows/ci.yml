@@ -43,5 +43,6 @@ jobs:
           SPRING_DATASOURCE_USERNAME: gameflix_app
           SPRING_DATASOURCE_PASSWORD: testpass
           JWT_SECRET: "MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY="
+          JWT_EXPIRATION: "3600"
       - name: Build Docker image
         run: docker build -t gameflix-backend .
