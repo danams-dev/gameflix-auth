@@ -46,3 +46,17 @@ jobs:
           JWT_EXPIRATION: "3600"
       - name: Build Docker image
         run: docker build -t gameflix-backend .
+      - name: Install Syft
+        run: curl -sSfL https://get.anchore.io/syft | sudo sh -s -- -b /usr/local/bin
+      - name: Generate SBOM
+        run: syft gameflix-backend:latest -o cyclonedx-json=sbom.cdx.json
+      - name: Install Trivy
+        run: curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin v0.76.1
+      - name: Scan Docker image for CRITICAL vulnerabilities
+        run: trivy image --severity CRITICAL --exit-code 1 gameflix-backend:latest
+      - name: Archive SBOM
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: sbom.cdx.json
